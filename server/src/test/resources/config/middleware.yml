@@ -1,0 +1,41 @@
+enabled: true
+
+chain:
+  common:
+    - Common1MiddlewareHandler
+    - Common1MiddlewareHandler
+  api:
+    - Api1MiddlewareHandler
+    - Api2MiddlewareHandler
+# define all specific path here. If the path is not defined, then go with default.
+path:
+  /health:
+    - common
+  /v1:
+    - common
+    - api
+  /:
+
+
+
+pathHandlers:
+  - handlerName: 'first'
+    paths:
+      - path: '/test'
+        httpVerb: 'get'
+        middleware:
+          - com.networknt.server.Test1MiddlewareHandler
+        endPoint: com.networknt.server.TestHandler
+      - path: '/v1/something'
+        httpVerb: 'post'
+        namedMiddlewareChain: 'something'
+        endPoint: com.networknt.server.TestHandler
+
+namedMiddlewareChain:
+  - name: 'something'
+    middleware:
+      - com.networknt.server.Test2MiddlewareHandler
+  - name: 'somethingelse'
+    middleware:
+      - com.networknt.server.Test2MiddlewareHandler
+      - com.networknt.server.Test1MiddlewareHandler

@@ -129,22 +129,23 @@ public class Server {
             logger.error("Unable to start the server - no route handler provider available in service.yml");
             throw new RuntimeException("Unable to start the server - no route handler provider available in service.yml");
         }
-
+        Map<String, MiddlewareHandler> middlewareMap = new HashMap<>();
         // Middleware Handlers plugged into the handler chain.
         MiddlewareHandler[] middlewareHandlers = SingletonServiceFactory.getBeans(MiddlewareHandler.class);
+        // construct middleware handler map.
         if(middlewareHandlers != null) {
             for (int i = middlewareHandlers.length - 1; i >= 0; i--) {
                 logger.info("Plugin: " + middlewareHandlers[i].getClass().getName());
                 if(middlewareHandlers[i].isEnabled()) {
-                    if (handler instanceof NonFunctionalMiddlewareHandler) {
-                        handler = middlewareHandlers[i].setNext(((NonFunctionalMiddlewareHandler) handler).getNext());
-                    } else {
-                        handler = middlewareHandlers[i].setNext(handler);
-                    }
                     middlewareHandlers[i].register();
+                    middlewareMap.put(middlewareHandlers[i].getClass().getName(), middlewareHandlers[i]);
                 }
             }
         }
+        // now we need to construct the chains based on middleware.yml, if this config file doesn't exist
+        // we need to build the default chain out of service.yml for backward compatibility.
+
+
 
         gracefulShutdownHandler = new GracefulShutdownHandler(handler);
 

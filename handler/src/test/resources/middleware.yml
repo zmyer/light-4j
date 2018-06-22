@@ -1,0 +1,27 @@
+path:
+  - prefix: '/health'
+    method: 'get'
+    chain:
+      - common
+      - unaudit
+    # this endpoint will wired in to return the request before handler provider
+    endpoint: com.networknt.health.HealthGetHandler
+  # there is no method filter so only the prefix is checked.
+  # there is no endpoint, so the normal handler provider will be used.
+  - prefix: '/v1'
+    chain:
+      - common
+      - audit
+
+chain:
+  - name: common
+    middleware:
+      - com.networknt.handler.Common1MiddlewareHandler
+      - com.networknt.handler.Common2MiddlewareHandler
+  - name: audit
+    middleware:
+      - com.networknt.handler.Api1MiddlewareHandler
+      - com.networknt.handler.Api2MiddlewareHandler
+  - name: unaudit
+    middleware:
+      - com.networknt.handler.Api1MiddlewareHandler

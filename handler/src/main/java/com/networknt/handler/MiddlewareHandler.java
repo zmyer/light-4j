@@ -16,6 +16,8 @@
 
 package com.networknt.handler;
 
+import com.networknt.config.Config;
+import com.networknt.handler.config.MiddlewareConfig;
 import io.undertow.server.HttpHandler;
 
 /**
@@ -33,6 +35,9 @@ import io.undertow.server.HttpHandler;
  * @author Steve Hu
  */
 public interface MiddlewareHandler extends LightHttpHandler {
+    String CONFIG_NAME = "middleware";
+    MiddlewareConfig config = (MiddlewareConfig)Config.getInstance().getJsonObjectConfig(CONFIG_NAME, MiddlewareConfig.class);
+
     /**
      * Get the next handler in the chain
      *
