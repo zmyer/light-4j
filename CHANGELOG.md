@@ -1,5 +1,76 @@
 # Change Log
 
+## [1.5.21](https://github.com/networknt/light-4j/tree/1.5.21) (2018-10-26)
+[Full Changelog](https://github.com/networknt/light-4j/compare/1.5.20...1.5.21)
+
+**Implemented enhancements:**
+
+- Collect environment element in the Metrics Handler [\#310](https://github.com/networknt/light-4j/issues/310)
+- Enhance logging in the AuditHandler [\#295](https://github.com/networknt/light-4j/issues/295)
+- Environment config in client only applications [\#272](https://github.com/networknt/light-4j/issues/272)
+
+**Fixed bugs:**
+
+- Set correct status code if Method or URI from request could not be resolved in the handler chain [\#308](https://github.com/networknt/light-4j/issues/308)
+
+## [1.5.20](https://github.com/networknt/light-4j/tree/1.5.20) (2018-10-05)
+[Full Changelog](https://github.com/networknt/light-4j/compare/1.5.19...1.5.20)
+
+**Fixed bugs:**
+
+- MiddlewareHandler.register is called for each endpoint [\#305](https://github.com/networknt/light-4j/issues/305)
+
+**Closed issues:**
+
+- Handler needs to properly escape characters in the Status description [\#306](https://github.com/networknt/light-4j/issues/306)
+- provide default security.yml and move providerId to jwt.yml [\#304](https://github.com/networknt/light-4j/issues/304)
+- Indicate that the BufferSize is too small in client.yml if Body cannot be parsed [\#302](https://github.com/networknt/light-4j/issues/302)
+- Intermittent issues with Consul API discovery [\#301](https://github.com/networknt/light-4j/issues/301)
+- make bufferSize configurable for default buffer pool in Http2Client [\#299](https://github.com/networknt/light-4j/issues/299)
+- Add more debug info during startup for the Kubernetes status.hostIP [\#297](https://github.com/networknt/light-4j/issues/297)
+- Update the config module output to error only when config file not found [\#294](https://github.com/networknt/light-4j/issues/294)
+- Update OAuthHelper to include new method to support SAML grant type flow [\#290](https://github.com/networknt/light-4j/issues/290)
+- server does not create zip file from config server correctly [\#157](https://github.com/networknt/light-4j/issues/157)
+
+## [1.5.19](https://github.com/networknt/light-4j/tree/1.5.19) (2018-09-22)
+[Full Changelog](https://github.com/networknt/light-4j/compare/1.5.18...1.5.19)
+
+**Fixed bugs:**
+
+- Consul heartbeat stream limit being exceeded [\#279](https://github.com/networknt/light-4j/issues/279)
+
+**Closed issues:**
+
+- move light-tokenization status codes to status.ym in light-4j [\#289](https://github.com/networknt/light-4j/issues/289)
+- remove unused status code from status.yml [\#288](https://github.com/networknt/light-4j/issues/288)
+- add status code for user-management in light-portal [\#287](https://github.com/networknt/light-4j/issues/287)
+- fix a typo in HashUtil [\#286](https://github.com/networknt/light-4j/issues/286)
+- BodyHandler Middleware to support configurable Content-Type [\#285](https://github.com/networknt/light-4j/issues/285)
+- add pattern matching to differentiate email and userId in StringUtils [\#283](https://github.com/networknt/light-4j/issues/283)
+- update EmailSender to trust the host from the email.yml [\#278](https://github.com/networknt/light-4j/issues/278)
+- change email module name to email-sender [\#277](https://github.com/networknt/light-4j/issues/277)
+- create http-url module for url related utility [\#276](https://github.com/networknt/light-4j/issues/276)
+- create a new http-string module that depends on Undertow [\#275](https://github.com/networknt/light-4j/issues/275)
+- add replaceOnce to StringUtil in utility module [\#274](https://github.com/networknt/light-4j/issues/274)
+- set the right default port number for DirectRegistry [\#273](https://github.com/networknt/light-4j/issues/273)
+- add error codes for light-config-server [\#271](https://github.com/networknt/light-4j/issues/271)
+- Created by accident [\#270](https://github.com/networknt/light-4j/issues/270)
+- rename datasource to data-source [\#269](https://github.com/networknt/light-4j/issues/269)
+- rename deref to deref-token [\#268](https://github.com/networknt/light-4j/issues/268)
+- rename limit to rate-limit [\#267](https://github.com/networknt/light-4j/issues/267)
+- rename basic to basic-auth [\#266](https://github.com/networknt/light-4j/issues/266)
+- update deregisterAfter from 90m to 2m [\#264](https://github.com/networknt/light-4j/issues/264)
+- OpenAPI and GraphQL ValidatorHandlers conflict on config file names [\#252](https://github.com/networknt/light-4j/issues/252)
+- add a handler for IP whitelisting [\#235](https://github.com/networknt/light-4j/issues/235)
+
+**Merged pull requests:**
+
+- Updated oauth helper files to handle SAMLBearer grant type [\#292](https://github.com/networknt/light-4j/pull/292) ([dguncb](https://github.com/dguncb))
+- Update Readme [\#284](https://github.com/networknt/light-4j/pull/284) ([anilmuppalla](https://github.com/anilmuppalla))
+- Related to \#249, adds an EndpointSource interface for injecting path,… [\#282](https://github.com/networknt/light-4j/pull/282) ([logi](https://github.com/logi))
+- fixes \#279 Consul heartbeat stream limit being exceeded [\#281](https://github.com/networknt/light-4j/pull/281) ([stevehu](https://github.com/stevehu))
+- enhancement for light-oauth2 provider module [\#265](https://github.com/networknt/light-4j/pull/265) ([stevehu](https://github.com/stevehu))
+
 ## [1.5.18](https://github.com/networknt/light-4j/tree/1.5.18) (2018-08-15)
 [Full Changelog](https://github.com/networknt/light-4j/compare/1.5.17...1.5.18)
 
@@ -32,7 +103,7 @@
 **Merged pull requests:**
 
 - Adding HandlerProvider support to list of handlers. [\#259](https://github.com/networknt/light-4j/pull/259) ([NicholasAzar](https://github.com/NicholasAzar))
-- Don't require ignored config [\#254](https://github.com/networknt/light-4j/pull/254) ([logi](https://github.com/logi))
+- Do not require ignored config [\#254](https://github.com/networknt/light-4j/pull/254) ([logi](https://github.com/logi))
 -  Descriptive Exception on unknown chain or handler in handler.yml [\#253](https://github.com/networknt/light-4j/pull/253) ([logi](https://github.com/logi))
 - Fix issue causing query params to be missing from exchange. [\#251](https://github.com/networknt/light-4j/pull/251) ([NicholasAzar](https://github.com/NicholasAzar))
 - Safer set exchange status [\#245](https://github.com/networknt/light-4j/pull/245) ([logi](https://github.com/logi))

@@ -65,7 +65,21 @@ public class JwtIssuer {
 
         // The JWT is signed using the sender's private key
         jws.setKey(privateKey);
-        jws.setKeyIdHeaderValue(jwtConfig.getKey().getKid());
+
+        // Get provider from security config file, it should be two digit
+        // And the provider id will set as prefix for keyid in the token header, for example: 05100
+        // if there is no provider id, we use "00" for the default value
+        String provider_id = "";
+        if (jwtConfig.getProviderId() != null) {
+            provider_id = jwtConfig.getProviderId();
+            if (provider_id.length() == 1) {
+                provider_id = "0" + provider_id;
+            } else if (provider_id.length() > 2) {
+                logger.error("provider_id defined in the security.yml file is invalid; the length should be 2");
+                provider_id = provider_id.substring(0, 2);
+            }
+        }
+        jws.setKeyIdHeaderValue(provider_id + jwtConfig.getKey().getKid());
 
         // Set the signature algorithm on the JWT/JWS that will integrity protect the claims
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
@@ -99,7 +113,7 @@ public class JwtIssuer {
 
     /**
      * Construct a default JwtClaims
-     *
+     * @param expiresIn expires in
      * @return JwtClaims
      */
     public static JwtClaims getJwtClaimsWithExpiresIn(int expiresIn) {
